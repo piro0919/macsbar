@@ -1,0 +1,88 @@
+/* stylelint-disable plugin/no-unused-selectors */
+.container {
+  align-items: center;
+  background: #1e1f22;
+  color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  font-family:
+    "SF Pro Text",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-weight: 500;
+  height: 100dvh;
+  -ms-overflow-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+
+.container::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+.startButton {
+  cursor: pointer;
+  display: none;
+  font-size: 18px;
+  padding: 0 12px;
+  user-select: none;
+}
+
+.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+  transition: none;
+}
+
+.appItem {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  height: 100%;
+  max-width: 180px;
+  min-width: 120px;
+  padding: 0 10px 0 6px;
+  transition:
+    background 0.2s,
+    opacity 0.2s;
+  width: fit-content;
+  will-change: background, opacity;
+}
+
+.appItem:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+
+.appIcon {
+  height: 16px;
+  object-fit: contain;
+  width: 16px;
+}
+
+.appName {
+  font-size: 12px;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.active {
+  background: rgb(255 255 255 / 0.1);
+  transition: none; /* アクティブ状態のトランジションを無効化 */
+}
+
+.minimized {
+  opacity: 0.5;
+  transition: none;
+}
+
+/* チラつき防止のためにアクティブでないホバー状態を調整 */
+.appItem:not(.active):hover {
+  background: rgb(255 255 255 / 0.1);
+  transition: background 0.3s ease; /* ホバー時のトランジションをやや遅くする */
+}

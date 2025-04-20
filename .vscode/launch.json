@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "args": [],
+      "cwd": "${workspaceFolder:macsbar}",
+      "name": "Debug macsbar",
+      "preLaunchTask": "swift: Build Debug macsbar",
+      "program": "${workspaceFolder:macsbar}/.build/debug/macsbar",
+      "request": "launch",
+      "type": "swift"
+    },
+    {
+      "args": [],
+      "cwd": "${workspaceFolder:macsbar}",
+      "name": "Release macsbar",
+      "preLaunchTask": "swift: Build Release macsbar",
+      "program": "${workspaceFolder:macsbar}/.build/release/macsbar",
+      "request": "launch",
+      "type": "swift"
+    }
+  ]
+}

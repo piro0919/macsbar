@@ -1,0 +1,14 @@
+.container {
+  background: #1e1f22;
+  color: #fff;
+  font-family:
+    "SF Pro Text",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-weight: 500;
+  height: 100dvh;
+}
