@@ -1,5 +1,6 @@
 import isEqual from "lodash.isequal";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
+import menuIcon from "../../assets/menu-icon.png";
 import styles from "./style.module.css";
 
 type WindowBounds = {
@@ -159,7 +160,9 @@ export default function App(): React.JSX.Element {
         }}
         className={styles.startButton}
       >
-        🪟
+        <div className={styles.startButtonInner}>
+          <img alt="menu-icon" className={styles.image} src={menuIcon} />
+        </div>
       </div>
       {apps.map((app) => (
         <AppItem

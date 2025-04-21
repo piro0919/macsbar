@@ -6,7 +6,7 @@ type AppBounds = { height: number; width: number; x: number; y: number };
 type App = {
   bounds: AppBounds[];
   bundleIdentifier: null | string;
-  iconPath: string;
+  iconPath: null | string;
   isActive: boolean;
   name: string;
 };
@@ -136,22 +136,7 @@ function createStartMenuWindow() {
   });
 }
 
-type WindowBounds = {
-  height: number;
-  width: number;
-  x: number;
-  y: number;
-};
-
-type AppInfo = {
-  bounds: WindowBounds[];
-  bundleIdentifier: null | string;
-  iconPath: null | string;
-  isActive: boolean;
-  name: string;
-};
-
-function getRunningAppNames(): AppInfo[] {
+function getRunningAppNames(): App[] {
   try {
     const result = execFileSync(
       app.isPackaged
@@ -159,7 +144,7 @@ function getRunningAppNames(): AppInfo[] {
         : path.resolve(__dirname, "../../swift-bin/app_observer"),
     );
 
-    return JSON.parse(result.toString()) as AppInfo[];
+    return JSON.parse(result.toString()) as App[];
   } catch (err) {
     console.error("Failed to get app list from Swift CLI:", err);
 
