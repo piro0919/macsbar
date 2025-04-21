@@ -27,3 +27,5 @@ yarn-error.log*
 
 # environment variables
 .env*
+
+swift-bin

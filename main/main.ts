@@ -153,7 +153,11 @@ type AppInfo = {
 
 function getRunningAppNames(): AppInfo[] {
   try {
-    const result = execFileSync(path.resolve(__dirname, "../app_observer"));
+    const result = execFileSync(
+      app.isPackaged
+        ? path.join(process.resourcesPath, "swift-bin", "app_observer")
+        : path.resolve(__dirname, "../../swift-bin/app_observer"),
+    );
 
     return JSON.parse(result.toString()) as AppInfo[];
   } catch (err) {
@@ -293,7 +297,12 @@ if (!gotLock) {
             data.intention,
           ];
 
-          execFileSync(path.resolve(__dirname, "../app_observer"), args);
+          execFileSync(
+            app.isPackaged
+              ? path.join(process.resourcesPath, "swift-bin", "app_observer")
+              : path.resolve(__dirname, "../../swift-bin/app_observer"),
+            args,
+          );
         } catch (err) {
           console.error("Failed to execute app action with app_observer:", err);
         }
@@ -345,7 +354,9 @@ if (!gotLock) {
 }
 
 export function startAppMonitor(windows: BrowserWindow[]) {
-  const monitorPath = path.resolve(__dirname, "../app_observer");
+  const monitorPath = app.isPackaged
+    ? path.join(process.resourcesPath, "swift-bin", "app_observer")
+    : path.resolve(__dirname, "../../swift-bin/app_observer");
   const lastSentJsonMap = new Map<number, string>();
   const proc = spawn(monitorPath, ["--watch"]);
 

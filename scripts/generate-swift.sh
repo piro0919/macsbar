@@ -2,7 +2,7 @@
 set -e
 
 SRC_DIR="swift-src"
-OUT_DIR="dist"
+OUT_DIR="swift-bin"
 BINARIES=("app_observer")
 
 mkdir -p "$OUT_DIR"

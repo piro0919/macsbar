@@ -6,6 +6,12 @@
   "build": {
     "appId": "com.example.macsbar",
     "asar": true,
+    "extraResources": [
+      {
+        "from": "swift-bin/app_observer",
+        "to": "swift-bin/app_observer"
+      }
+    ],
     "files": [
       "dist",
       "!dist/mac-arm64",
@@ -104,7 +110,7 @@
     "url": "https://github.com/piro0919/macsbar.git"
   },
   "scripts": {
-    "build": "vite build --sourcemap false && npm run build-main && electron-builder --publish never",
+    "build": "vite build --sourcemap false && npm run build-main && npm run generate-swift && electron-builder --publish never",
     "build-main": "tsc --project tsconfig.json",
     "codesign": "codesign --deep --force --sign - 'dist/mac-arm64/Macsbar.app'",
     "dev": "npm run start",
@@ -114,8 +120,9 @@
     "lint": "npx eslint",
     "lint:fix": "npx eslint --fix",
     "lint:style": "stylelint --fix '**/*.css'",
-    "postbuild": "npm run strip-bloat && npm run codesign && npm run zip && rm -f dist/*-arm64-mac.zip",
-    "prebuild": "npm run generate-swift && npm run generate-icon",
+    "patch-plist": "bash scripts/patch-plist.sh",
+    "postbuild": "npm run patch-plist && npm run strip-bloat && npm run codesign && npm run zip && rm -f dist/*-arm64-mac.zip",
+    "prebuild": "npm run generate-icon",
     "predev": "npm run generate-swift",
     "prettier": "prettier --write .",
     "release": "npm run release:create && npm run release:upload",
