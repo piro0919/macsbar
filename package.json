@@ -93,7 +93,7 @@
     "wait-on": "9.0.5"
   },
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "main": "dist/main/main.js",
   "name": "macsbar",
   "overrides": {
